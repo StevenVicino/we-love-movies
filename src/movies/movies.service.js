@@ -7,7 +7,7 @@ function list() {
 async function listShowing() {
   const results = await knex("movies as m")
     .select(
-      "m.movie_id as id",
+      "m.movie_id",
       "m.title",
       "m.runtime_in_minutes",
       "m.rating",

@@ -22,9 +22,10 @@ async function movieExists(req, res, next) {
   next({ status: 404, message: "Movie cannot be found" });
 }
 
-function read(req, res, next) {
-  const { movie: data } = res.locals;
-  res.json({ data });
+async function read(req, res, next) {
+  const { movie } = res.locals;
+  console.log(movie);
+  res.json({ data: movie });
 }
 
 async function readTheaters(req, res, next) {
@@ -34,7 +35,7 @@ async function readTheaters(req, res, next) {
 }
 
 async function readReview(req, res, next) {
-  const { movieId } = req.params;
+  const movieId = res.locals.movie.movie_id;
   const data = await moviesService.readReview(movieId);
   const result = await Promise.all(
     data.map(async (review) => {
