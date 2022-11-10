@@ -27,7 +27,6 @@ async function update(req, res, next) {
   updatedReview.critic = await reviewsService.readCritic(
     updatedReview.critic_id
   );
-  console.log(updatedReview);
   res.json({ data: updatedReview });
 }
 

@@ -4,9 +4,8 @@ function list() {
   return knex("movies").select("*");
 }
 
-function listShowing() {
-  return knex("movies as m")
-    .distinct()
+async function listShowing() {
+  const results = await knex("movies as m")
     .select(
       "m.movie_id as id",
       "m.title",
@@ -16,7 +15,9 @@ function listShowing() {
       "m.image_url"
     )
     .join("movies_theaters as mt", "mt.movie_id", "m.movie_id")
-    .where({ is_showing: true });
+    .where({ "mt.is_showing": true })
+    .groupBy("m.movie_id");
+  return results;
 }
 
 function read(movieId) {
@@ -43,6 +44,7 @@ function readReview(movieId) {
     .join("critics as c", "c.critic_id", "r.critic_id")
     .where({ "r.movie_id": movieId });
 }
+
 module.exports = {
   list,
   listShowing,

@@ -7,6 +7,7 @@ async function list(req, res, next) {
     res.json({ data });
   } else {
     const data = await moviesService.listShowing();
+    console.log(data);
     res.json({ data });
   }
 }
