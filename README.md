@@ -4,3 +4,10 @@ This app lets users search for what movies are playing in a select list of theat
 
 ## Technology
 
+- Node.js
+- Express 
+- Knex 
+- Version control with Git
+
+## Screenshots
+
